@@ -1,0 +1,120 @@
+game-tracker/
+│
+├── app/
+│   ├── layout.jsx                    # Root layout (Sidebar + content)
+│   ├── globals.css                   # Tailwind + dark theme
+│   ├── page.jsx                      # Entry redirect
+│   ├── loading.jsx                   # Global loading UI
+│
+│   ├── auth/
+│   │   └── page.jsx                  # Login / Sign Up
+│
+│   ├── dashboard/
+│   │   └── page.jsx                  # Stats + game grid
+│
+│   ├── games/
+│   │   ├── add/
+│   │   │   └── page.jsx              # Add new game
+│   │   │
+│   │   └── [gameId]/
+│   │       ├── page.jsx              # Game details (notes + screenshots)
+│   │       └── edit/
+│   │           └── page.jsx          # Edit game
+│
+│   ├── settings/
+│   │   └── page.jsx                  # Profile / preferences
+│
+│   └── api/
+│       ├── auth/
+│       │   └── route.js              # Auth helpers
+│       │
+│       ├── games/
+│       │   └── route.js              # CRUD games
+│       │
+│       ├── notes/
+│       │   └── route.js              # CRUD notes
+│       │
+│       └── upload/
+│           └── route.js              # Screenshot uploads
+│
+├── components/
+│   ├── layout/
+│   │   ├── Sidebar.jsx               # IGN-style sidebar
+│   │   ├── SidebarItem.jsx           # Icon + label item
+│   │   ├── SidebarSection.jsx        # Grouped navigation
+│   │   ├── TopBar.jsx                # Header (user menu)
+│   │   └── MobileNav.jsx             # Mobile bottom nav
+│
+│   ├── auth/
+│   │   └── AuthForm.jsx              # Login / Sign Up form
+│
+│   ├── dashboard/
+│   │   ├── StatsOverview.jsx         # Totals / playing / completed
+│   │   ├── FilterBar.jsx             # Filters
+│   │   ├── GameGrid.jsx              # Grid wrapper
+│   │   └── GameCard.jsx              # Game card
+│
+│   ├── games/
+│   │   ├── GameHeader.jsx            # Title + meta
+│   │   ├── GameActions.jsx           # Edit / Delete buttons
+│   │   ├── GameForm.jsx              # Add/Edit game form
+│   │
+│   │   ├── notes/
+│   │   │   ├── NoteForm.jsx          # Add note + screenshot
+│   │   │   ├── NotesTimeline.jsx     # Timeline list
+│   │   │   ├── NoteCard.jsx          # Single note
+│   │   │   └── DeleteNoteModal.jsx   # Confirm note delete
+│   │
+│   │   └── DeleteGameModal.jsx        # Confirm game delete
+│
+│   ├── ui/
+│   │   ├── Button.jsx
+│   │   ├── Input.jsx
+│   │   ├── Select.jsx
+│   │   ├── Textarea.jsx
+│   │   ├── Badge.jsx                 # Playing / Completed
+│   │   ├── Card.jsx
+│   │   ├── Modal.jsx
+│   │   └── Tooltip.jsx
+│
+│   └── feedback/
+│       ├── EmptyState.jsx            # No data states
+│       ├── LoadingSpinner.jsx
+│       └── ErrorState.jsx
+│
+├── lib/
+│   ├── supabase/
+│   │   ├── client.js                 # Supabase browser client
+│   │   ├── server.js                 # Server helpers
+│   │   ├── auth.js                   # Auth helpers
+│   │   ├── games.js                  # Game queries
+│   │   ├── notes.js                  # Note queries
+│   │   └── storage.js                # Screenshot upload/delete
+│
+│   ├── filters.js                    # Filtering logic
+│   ├── stats.js                      # Dashboard calculations
+│   └── constants.js                  # Consoles, themes, statuses
+│
+├── styles/
+│   └── themes.css                    # Gradients + dark theme tokens
+│
+├── public/
+│   ├── icons/
+│   │   ├── ps5.svg
+│   │   ├── xbox.svg
+│   │   ├── pc.svg
+│   │   └── switch.svg
+│   │
+│   └── logo.svg
+│
+├── supabase/
+│   ├── schema.sql                    # Tables & relations
+│   ├── policies.sql                  # RLS policies
+│   └── storage.sql                   # Screenshot buckets
+│
+├── middleware.js                     # Auth-protected routes
+├── tailwind.config.js
+├── postcss.config.js
+├── next.config.js
+├── package.json
+└── README.md
