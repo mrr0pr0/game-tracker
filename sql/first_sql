@@ -1,0 +1,55 @@
+-- Games table
+CREATE TABLE games (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    created_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    created_by TEXT,
+    name TEXT NOT NULL,
+    console TEXT NOT NULL CHECK (console IN ('PC', 'PlayStation 5', 'PlayStation 4', 'Xbox Series X/S', 'Xbox One', 'Nintendo Switch', 'Steam Deck', 'Mobile')),
+    theme TEXT,
+    status TEXT DEFAULT 'playing' CHECK (status IN ('playing', 'completed')),
+    cover_image TEXT
+);
+
+-- Notes table
+CREATE TABLE notes (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    created_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    created_by TEXT,
+    game_id UUID REFERENCES games(id) ON DELETE CASCADE,
+    content TEXT NOT NULL,
+    screenshot_url TEXT
+);
+
+-- Indexes for performance
+CREATE INDEX idx_games_created_by ON games(created_by);
+CREATE INDEX idx_games_status ON games(status);
+CREATE INDEX idx_notes_game_id ON notes(game_id);
+CREATE INDEX idx_notes_created_date ON notes(created_date DESC);
+
+-- Row Level Security (optional but recommended)
+ALTER TABLE games ENABLE ROW LEVEL SECURITY;
+ALTER TABLE notes ENABLE ROW LEVEL SECURITY;
+
+-- Policies for authenticated users to only see their own data
+CREATE POLICY "Users can view their own games" ON games
+    FOR SELECT USING (auth.email() = created_by);
+
+CREATE POLICY "Users can insert their own games" ON games
+    FOR INSERT WITH CHECK (auth.email() = created_by);
+
+CREATE POLICY "Users can update their own games" ON games
+    FOR UPDATE USING (auth.email() = created_by);
+
+CREATE POLICY "Users can delete their own games" ON games
+    FOR DELETE USING (auth.email() = created_by);
+
+CREATE POLICY "Users can view notes for their games" ON notes
+    FOR SELECT USING (game_id IN (SELECT id FROM games WHERE created_by = auth.email()));
+
+CREATE POLICY "Users can insert notes for their games" ON notes
+    FOR INSERT WITH CHECK (game_id IN (SELECT id FROM games WHERE created_by = auth.email()));
+
+CREATE POLICY "Users can delete notes for their games" ON notes
+    FOR DELETE USING (game_id IN (SELECT id FROM games WHERE created_by = auth.email()));
