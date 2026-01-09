@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+.idea
+qodana.yaml
 
 # debug
 npm-debug.log*
