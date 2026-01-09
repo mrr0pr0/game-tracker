@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@supabase-js/source':
+        specifier: github:supabase/supabase-js
+        version: https://codeload.github.com/supabase/supabase-js/tar.gz/0a8cdd41149e7eaf6a969e4f958bc2872ab0ee68
       next:
         specifier: 16.1.1
         version: 16.1.1(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -395,6 +398,10 @@ packages:
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
+
+  '@supabase-js/source@https://codeload.github.com/supabase/supabase-js/tar.gz/0a8cdd41149e7eaf6a969e4f958bc2872ab0ee68':
+    resolution: {tarball: https://codeload.github.com/supabase/supabase-js/tar.gz/0a8cdd41149e7eaf6a969e4f958bc2872ab0ee68}
+    version: 0.0.0
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -2220,6 +2227,8 @@ snapshots:
   '@nolyfill/is-core-module@1.0.39': {}
 
   '@rtsao/scc@1.1.0': {}
+
+  '@supabase-js/source@https://codeload.github.com/supabase/supabase-js/tar.gz/0a8cdd41149e7eaf6a969e4f958bc2872ab0ee68': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
